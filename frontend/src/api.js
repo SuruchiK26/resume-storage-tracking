@@ -1,5 +1,4 @@
-const API_BASE =
-  "resume-backend-apis-gjedcub4ehfjbef7.centralindia-01.azurewebsites.net";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:80";
 
 export const uploadResume = async (formData) => {
   const res = await fetch(`${API_BASE}/api/upload`, {
@@ -10,7 +9,9 @@ export const uploadResume = async (formData) => {
   return res.json();
 };
 
-export const getCandidates = async () => {
-  const res = await fetch(`${API_BASE}/api/candidates`);
+export const getCandidates = async (skill) => {
+  const url = `${API_BASE}/api/candidates${skill ? `?skill=${encodeURIComponent(skill)}` : ""}`;
+  const res = await fetch(url);
   return res.json();
 };
+

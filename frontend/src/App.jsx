@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { uploadResume, getCandidates } from "./api";
 import "./App.css";
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:80";
+
 const SKILLS = [
   "Java", "Python", "C++", "C#", "JavaScript", "TypeScript", "React",
   "Angular", "Vue.js", "Node.js", "Express.js", "MongoDB", "SQL", "MySQL",
@@ -35,8 +37,8 @@ function App() {
     document.body.className = theme;
   }, [theme]);
 
-  const loadCandidates = async () => {
-    const data = await getCandidates();
+  const loadCandidates = async (skill) => {
+    const data = await getCandidates(skill);
     setCandidates(data || []);
   };
 
@@ -60,7 +62,8 @@ function App() {
 
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("skills", JSON.stringify(selectedSkills));
+    // send skills as CSV so backend can parse easily
+    formData.append("skills", selectedSkills.join(","));
     formData.append("resume", file);
 
     await uploadResume(formData);
@@ -69,6 +72,17 @@ function App() {
     setName(""); setSelectedSkills([]); setDropdownSkill(""); setFile(null);
     loadCandidates();
   };
+
+  useEffect(() => {
+    if (isAdmin) loadCandidates();
+  }, [isAdmin]);
+
+  useEffect(() => {
+    // reload search results when the filter changes (only when on search page)
+    if (page === 'search') {
+      loadCandidates(filterSkill);
+    }
+  }, [filterSkill, page]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -219,7 +233,7 @@ function App() {
                     <span key={s}>{s}</span>
                   ))}
                 </div>
-                <a href={c.resumeUrl} target="_blank">
+                <a href={`${API_BASE}/api/download/${c.id}`} target="_blank" rel="noreferrer">
                   Download
                 </a>
               </li>
