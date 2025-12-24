@@ -1,0 +1,355 @@
+/* =========================
+   Variables for themes
+========================= */
+:root {
+  --day-bg: #ffffff;
+  --day-text: #333333;
+  --day-card: #f9f9f9;
+  --day-accent: #667eea;
+
+  --night-bg: #0d1117;
+  --night-text: #f5f5f5;
+  --night-card: #1f1f1f;
+  --night-accent: #8b5cf6;
+}
+
+/* =========================
+   Body & Theme
+========================= */
+body.day {
+  background: var(--day-bg);
+  color: var(--day-text);
+}
+
+body.night {
+  background: var(--night-bg);
+  color: var(--night-text);
+}
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* =========================
+   Header
+========================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.header-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+body.night .header-text h1 {
+  background: linear-gradient(
+    90deg,
+    #8b5cf6,   /* bright purple */
+    #a78bfa,   /* lighter purple/lavender */
+    #6d28d9    /* deep purple */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.night .header-text .subheading {
+  color: var(--night-text);
+}
+
+.theme-toggle {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  background: var(--day-accent);
+  color: white;
+  cursor: pointer;
+}
+
+body.night .theme-toggle {
+  background: var(--night-accent);
+}
+
+/* =========================
+   Navigation Buttons
+========================= */
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-buttons button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+}
+
+.nav-buttons button.active {
+  background: var(--day-accent);
+  color: white;
+}
+
+body.night .nav-buttons button.active {
+  background: var(--night-accent);
+}
+
+/* =========================
+   Card
+========================= */
+.card {
+  background: var(--day-card);
+  color: var(--day-text);
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 10px auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+body.night .card {
+  background: var(--night-card);
+  color: var(--night-text);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* =========================
+   Inputs & Buttons
+========================= */
+input, select, .submit {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+body.night input, body.night select {
+  background: #2a2a2a;
+  color: var(--night-text);
+  border: 1px solid #444;
+}
+
+.submit {
+  background: var(--day-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+body.night .submit {
+  background: var(--night-accent);
+}
+
+/* =========================
+   Dropdown + Add Button
+========================= */
+.dropdown-skill {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.dropdown-skill button {
+  background: var(--day-accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+body.night .dropdown-skill button {
+  background: var(--night-accent);
+}
+
+/* =========================
+   Selected Skills
+========================= */
+.selected-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.skill.active {
+  background: var(--day-accent);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+body.night .skill.active {
+  background: var(--night-accent);
+}
+
+/* =========================
+   Candidate List
+========================= */
+.skill-list span {
+  background: #eee;
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+body.night .skill-list span {
+  background: #444;
+  color: white;
+}
+
+/* =========================
+   Admin Login Page
+========================= */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--day-card);
+  color: var(--day-text);
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  max-width: 350px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+body.night .login-card {
+  background: var(--night-card);
+  color: var(--night-text);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.login-card h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+body.night .login-card h1 {
+  background: linear-gradient(90deg, #8b5cf6, #6d28d9);
+}
+
+.login-card p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+body.night .login-form input {
+  background: #2a2a2a;
+  color: var(--night-text);
+  border: 1px solid #444;
+}
+
+.login-form button {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: var(--day-accent);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+body.night .login-form button {
+  background: var(--night-accent);
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 768px) {
+  .dropdown-skill {
+    flex-direction: column;
+  }
+
+  .dropdown-skill button {
+    width: 100%;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+  }
+
+  .card, .login-card {
+    margin: 10px;
+    padding: 20px;
+  }
+
+  .header-text h1 {
+    font-size: 2.2rem;
+  }
+  .header-text .subheading {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill.active {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  input, select, .submit, .login-form input, .login-form button {
+    padding: 8px;
+  }
+
+  .header-text h1 {
+    font-size: 1.8rem;
+  }
+  .header-text .subheading {
+    font-size: 0.9rem;
+  }
+}
